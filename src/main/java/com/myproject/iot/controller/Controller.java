@@ -1,35 +1,30 @@
 package com.myproject.iot.controller;
 
 import com.myproject.iot.domain.Device;
-import com.myproject.iot.repository.DeviceRepository;
+import com.myproject.iot.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
 
     @Autowired
-     private DeviceRepository deviceRepository;
+    private DeviceService deviceService;
 
     @GetMapping(value = "/default")
-    public String defaultGet(String give){
-        Device device = new Device(1L, "default device");
+    public ResponseEntity defaultGet(String name) {
 
-        return device.toString();
+
+        return new ResponseEntity(deviceService.defaultAdd(name),HttpStatus.CREATED);
 
     }
 
-    @GetMapping(value = "/add")
-    public String add(@RequestParam(name = "id") String id,
-                      @RequestParam(name = "name") String name){
-        Device device = new Device(Long.valueOf( id), name);
-        deviceRepository.save(device);
+    @PostMapping(value = "/add")
+    public Device add(@RequestBody Device device) {
 
-        return  "added";
+        return deviceService.addDevice(device);
 
     }
 
