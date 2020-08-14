@@ -19,9 +19,9 @@ public class DeviceService {
         return deviceRepository.save(device);
     }
 
-    public void addDevice(String id, String name) {
-        Device device = new Device(1L, "default device");
-        deviceRepository.save(device);
+    public Device addDevice(String id, String name) {
+        Device device = new Device(Long.valueOf(id), name);
+        return deviceRepository.save(device);
     }
 
     public Device addDevice(Device device) {
