@@ -1,6 +1,8 @@
 package com.myproject.iot.controller;
 
 import com.myproject.iot.domain.Device;
+import com.myproject.iot.dto.CreateDevicePayload;
+import com.myproject.iot.dto.DeviceDto;
 import com.myproject.iot.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

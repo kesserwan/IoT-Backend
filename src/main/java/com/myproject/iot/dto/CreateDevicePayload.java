@@ -1,4 +1,4 @@
-package com.myproject.iot.controller;
+package com.myproject.iot.dto;
 
 public class CreateDevicePayload {
 
