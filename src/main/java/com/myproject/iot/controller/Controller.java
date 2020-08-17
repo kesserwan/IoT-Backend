@@ -7,25 +7,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
+@RequestMapping("/devices")
 public class Controller {
 
     @Autowired
     private DeviceService deviceService;
 
-    @GetMapping(value = "/default")
-    public ResponseEntity defaultGet(String name) {
-
-
-        return new ResponseEntity(deviceService.defaultAdd(name),HttpStatus.CREATED);
-
+    @PostMapping("/")
+    public ResponseEntity<Device> addDevice(@RequestBody CreateDevicePayload payload) {
+        return new ResponseEntity<>(deviceService.addDevice(payload.getName()), HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/add")
-    public Device add(@RequestBody Device device) {
-
-        return deviceService.addDevice(device);
-
+    @GetMapping("/")
+    public List<DeviceDto> getDevices() {
+        return deviceService.getDevices()
+                .stream()
+                .map(device -> new DeviceDto(device.getId(), device.getName()))
+                .collect(Collectors.toList());
     }
 
     // Exercise: add the code delete a device and test it, see DeviceRepository class
