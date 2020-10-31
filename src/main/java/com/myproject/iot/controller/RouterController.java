@@ -26,6 +26,11 @@ public class RouterController {
         return routerRepository.findAll();
     }
 
+    @DeleteMapping("")
+    public void delete(@RequestParam(name = "id") Long id) {
+        routerRepository.deleteById(id);
+
+    }
 
 
     // Exercise: add the code delete a device and test it, see DeviceRepository class
