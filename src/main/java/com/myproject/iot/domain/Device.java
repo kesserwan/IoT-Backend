@@ -12,15 +12,25 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String ryleyDimension;
 
 
-    public Device(Long id, String name) {
+    public Device(Long id, String name, String ryleyDimension) {
         this.id = id;
         this.name = name;
+        this.ryleyDimension = ryleyDimension;
     }
 
     public Device() {
 
+    }
+
+    public String getRyleyDimension() {
+        return ryleyDimension;
+    }
+
+    public void setRyleyDimension(String ryleyDimension) {
+        this.ryleyDimension = ryleyDimension;
     }
 
     public Long getId() {

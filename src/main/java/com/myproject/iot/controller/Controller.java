@@ -19,7 +19,7 @@ public class Controller {
     @Autowired
     private DeviceService deviceService;
 
-    @PostMapping("/")
+    @PostMapping("/addDevice")
     public ResponseEntity<Device> addDevice(@RequestBody CreateDevicePayload payload) {
         return new ResponseEntity<>(deviceService.addDevice(payload.getName()), HttpStatus.CREATED);
     }
